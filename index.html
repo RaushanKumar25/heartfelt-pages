@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tumhare saath sab kuch thoda aur khoobsurat lagta hai — Will You Be My Valentine? 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            overflow-x: hidden;
+        }
+
+        .page {
+            min-height: 100vh;
+            display: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .heart-bg {
+            position: absolute;
+            font-size: 30px;
+            opacity: 0.3;
+            animation: float 10s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-50px) rotate(10deg); }
+        }
+
+        /* PAGE 1 */
+        #page1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .question-container {
+            background: white;
+            padding: 60px 50px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 500px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .emoji {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        h1 {
+            color: #764ba2;
+            font-size: 32px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .name {
+            color: #e74c3c;
+            font-size: 28px;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+            position: relative;
+            height: 120px;
+            align-items: center;
+        }
+
+        button {
+            padding: 18px 45px;
+            font-size: 20px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        #yesBtn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 30px rgba(245,87,108,0.4);
+        }
+
+        #noBtn {
+            background: #95a5a6;
+            color: white;
+            position: absolute;
+            transition: all 0.3s ease;
+        }
+
+        #noBtn:hover { background: #7f8c8d; }
+
+        /* PAGE 2 */
+        #page2 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .celebration-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .yay-text {
+            font-size: 60px;
+            color: white;
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .message {
+            font-size: 28px;
+            color: white;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            animation: fadeInUp 1s ease-out 0.3s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .gif-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+            animation: fadeInUp 1s ease-out 0.5s backwards;
+        }
+
+        .gif-box {
+            width: 200px;
+            height: 200px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            background: white;
+        }
+
+        .gif-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .next-btn {
+            margin-top: 40px;
+            padding: 15px 40px;
+            background: white;
+            color: #f5576c;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.9s backwards;
+        }
+
+        .next-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+        }
+
+        /* PAGE 3 */
+        #page3 {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+        }
+
+        .quotes-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 60px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .quote-title {
+            font-size: 50px;
+            color: white;
+            margin-bottom: 50px;
+            font-weight: 800;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        .quote-box {
+            background: white;
+            padding: 40px 50px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            max-width: 700px;
+            margin-bottom: 30px;
+            position: relative;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .quote-box:nth-child(2) { animation-delay: 0.2s; }
+        .quote-box:nth-child(3) { animation-delay: 0.4s; }
+        .quote-box:nth-child(4) { animation-delay: 0.6s; }
+
+        .quote-mark {
+            font-size: 60px;
+            color: #f5576c;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+        }
+
+        .quote-text {
+            font-size: 22px;
+            color: #333;
+            font-style: italic;
+            line-height: 1.6;
+            margin-top: 20px;
+        }
+
+        .quote-author {
+            font-size: 18px;
+            color: #f5576c;
+            text-align: right;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+
+        /* PAGE 4 */
+        #page4 {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .letter-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 60px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .letter-title {
+            font-size: 50px;
+            color: #ff6b9d;
+            margin-bottom: 40px;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        .letter-box {
+            background: white;
+            padding: 50px 60px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            max-width: 800px;
+            position: relative;
+            animation: fadeInUp 1s ease-out 0.3s backwards;
+        }
+
+        .letter-header {
+            font-size: 24px;
+            color: #ff6b9d;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .letter-body {
+            font-size: 18px;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .letter-body p { margin-bottom: 20px; }
+
+        .letter-signature {
+            text-align: right;
+            font-size: 24px;
+            color: #ff6b9d;
+            margin-top: 40px;
+            font-family: cursive;
+        }
+
+        /* PAGE 5 */
+        #page5 {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+
+        .messages-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 60px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .messages-title {
+            font-size: 50px;
+            color: white;
+            margin-bottom: 50px;
+            font-weight: 800;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        .message-card {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            max-width: 600px;
+            margin-bottom: 25px;
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .message-card::before {
+            content: '💕';
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 40px;
+            opacity: 0.2;
+        }
+
+        .message-card:nth-child(2) { animation-delay: 0.2s; }
+        .message-card:nth-child(3) { animation-delay: 0.4s; }
+        .message-card:nth-child(4) { animation-delay: 0.6s; }
+        .message-card:nth-child(5) { animation-delay: 0.8s; }
+
+        .message-text {
+            font-size: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* PAGE 6 */
+        #page6 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .photo-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin-top: 30px;
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+        }
+
+        .photo-box {
+            width: 100%;
+            height: 250px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-box:hover { transform: scale(1.05) rotate(2deg); }
+
+        .photo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 40px;
+            animation: floatUp 5s infinite;
+            opacity: 0;
+        }
+
+        @keyframes floatUp {
+            0% { opacity: 0; transform: translateY(0) rotate(0deg); }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; transform: translateY(-100vh) rotate(360deg); }
+        }
+
+        .love-text {
+            font-size: 36px;
+            color: white;
+            margin-top: 40px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out 0.9s backwards;
+        }
+
+        /* PROGRESS DOTS */
+        .progress-dots {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: white;
+            transform: scale(1.3);
+        }
+
+        @media (max-width: 768px) {
+            .question-container { padding: 40px 30px; }
+            h1 { font-size: 26px; }
+            .yay-text, .quote-title, .letter-title, .messages-title { font-size: 36px; }
+            .message, .quote-text { font-size: 18px; }
+            .letter-box { padding: 30px 25px; }
+            .photo-container { grid-template-columns: 1fr; }
+            .gif-box { width: 150px; height: 150px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1: Question -->
+    <div class="page active" id="page1">
+        <div class="heart-bg" style="left:10%;top:20%;">💖</div>
+        <div class="heart-bg" style="left:80%;top:30%;animation-delay:2s;">💕</div>
+        <div class="heart-bg" style="left:15%;top:70%;animation-delay:4s;">💝</div>
+        <div class="heart-bg" style="left:85%;top:75%;animation-delay:3s;">💗</div>
+
+        <div class="question-container">
+            <div class="emoji">🌹</div>
+            <h1>Tumhare saath sab kuch thoda aur khoobsurat lagta hai — Will You Be My Valentine? 💕</h1>
+            <div class="name">Astav Srivastav!🐥</div>
+            <div class="buttons">
+                <button id="yesBtn" onclick="selectYes()">Yes! 😋</button>
+                <button id="noBtn" onclick="moveButton()">No 😔</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: Celebration -->
+    <div class="page" id="page2">
+        <div class="celebration-content">
+            <div class="yay-text">❣️ Thank-You! ❣️</div>
+            <div class="message">Tumne haan kaha? <br>I Love You So Much! 💖</div>
+
+            <div class="gif-container">
+                <div class="gif-box">
+                    <img src="https://media.giphy.com/media/3o6Zt6ML6BklY8nsaY/giphy.gif" alt="Love GIF">
+                </div>
+                <div class="gif-box">
+                    <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="Heart GIF">
+                </div>
+                <div class="gif-box">
+                    <img src="https://media.giphy.com/media/xUOrw5LIxb8S9X1LGg/giphy.gif" alt="Couple GIF">
+                </div>
+            </div>
+
+            <button class="next-btn" onclick="nextPage()">Come close to my heart, click here!🥰</button>
+        </div>
+    </div>
+
+    <!-- PAGE 3: Love Quotes -->
+    <div class="page" id="page3">
+        <div class="heart-bg" style="left:5%;top:15%;">❤️</div>
+        <div class="heart-bg" style="left:90%;top:25%;animation-delay:1s;">💗</div>
+        <div class="heart-bg" style="left:10%;top:80%;animation-delay:3s;">💕</div>
+
+        <div class="quotes-content">
+            <div class="quote-title">💌 Kuch baatein sirf tumhare liye 💌</div>
+
+            <div class="quote-box">
+                <div class="quote-mark">"</div>
+                <div class="quote-text">Tumhari presence bina kuch kahe bhi sab kuch keh jaati hai.  
+                 main bht khushnaseeb hoon ki tumne mujhe pyaar kiya..</div>
+                <div class="quote-author"></div>
+            </div>
+
+            <div class="quote-box">
+                <div class="quote-mark">"</div>
+                <div class="quote-text">You are my today and all of my tomorrows. Every moment with you is a treasure I hold close to my heart.</div>
+                <div class="quote-author"></div>
+            </div>
+
+            <div class="quote-box">
+                <div class="quote-mark">"</div>
+                <div class="quote-text">Hum roz baat karein ya na karein,  
+par tum hamesha mere din ka hissa rehte ho.  
+Subah ki pehli soch me bhi,  
+aur raat ke aakhri khayal me bhi.</div>
+                <div class="quote-author"></div>
+            </div>
+
+            <button class="next-btn" onclick="nextPage()">Thoda sa aur pyaar.. 💖</button>
+        </div>
+    </div>
+
+    <!-- PAGE 4: Love Letter -->
+    <div class="page" id="page4">
+        <div class="heart-bg" style="left:8%;top:20%;">💝</div>
+        <div class="heart-bg" style="left:85%;top:35%;animation-delay:2s;">💖</div>
+        <div class="heart-bg" style="left:12%;top:75%;animation-delay:4s;">💗</div>
+
+        <div class="letter-content">
+            <div class="letter-title">💌 A Letter For You 💌</div>
+
+            <<div class="letter-box">
+    <div class="letter-header">hi, Astav</div>
+    <div class="letter-body">
+        <p>Jab tum meri zindagi me aaye, sab kuch thoda aur khubsurat lagne laga. Tumhari ek muskaan, tumhari baatein, aur tumhara saath — sab mere din ko roshan kar deta hai. Tumne mujhe dikhaya ki pyaar sirf lafzon ka nahi, ehsaas ka hota hai.</p>
+
+        <p>Humne dheere-dheere apni duniya banayi — raat ki baatein, chhoti khushiyan, aur ek dusre ke liye hamesha “main hoon na” kehna. Tumhara pyaar bina kisi condition ke tha, aur mere liye ye samajhna ek nayi zindagi ka ehsaas tha.</p>
+
+        <p>Zindagi ke challenges aaye, galatfehmiyan bhi, par tumne mujhe sabse bada sabak diya — pyaar kabhi jhootha nahi hota, aur sachchai aur samajh ka apna hi ehsaas hai. Tumne mujhe ye samjhaya ki kabhi kabhi pyaar ka matlab saath rehna nahi, bas ek dusre ko insaan banana hota hai.</p>
+
+        <p>Aaj, main sirf ye kehna chahta hu ki tum meri zindagi ka wo hissa ho jo hamesha roshan rahega. Tumhare saath har pal, chahe chhota ho ya bada, mere liye priceless hai. Tumne meri duniya ko badal diya, aur mere dil ko samajh aur pyaar se bhara.</p>
+    </div>
+    <div class="letter-signature"> Tumhara Navan ❤️</div>
+</div>
+
+
+            <button class="next-btn" onclick="nextPage()">More Surprises 💕</button>
+        </div>
+    </div>
+
+    <!-- PAGE 5: Cute Messages -->
+    <div class="page" id="page5">
+        <div class="heart-bg" style="left:15%;top:10%;">💕</div>
+        <div class="heart-bg" style="left:82%;top:28%;animation-delay:1.5s;">❤️</div>
+        <div class="heart-bg" style="left:8%;top:85%;animation-delay:3.5s;">💖</div>
+
+        <div class="messages-content">
+            <div class="messages-title">✨  Chhoti-Chhoti Khushiyan ✨</div>
+
+            <div class="message-card">
+                <div class="message-text">🌟 You're the reason I believe in magic. Every moment with you feels like a beautiful dream come true!</div>
+            </div>
+            <div class="message-card">
+                <div class="message-text">💫 My favorite place in the world? Wherever you are. My favorite time? Right now, thinking of you!</div>
+            </div>
+            <div class="message-card">
+                <div class="message-text">🌈 You make my heart skip a beat, my face light up with a smile, and my life infinitely better just by being in it!</div>
+            </div>
+            <div class="message-card">
+                <div class="message-text">✨ If I could give you one thing in life, I'd give you the ability to see yourself through my eyes. Only then would you realize how special you are to me!</div>
+            </div>
+            <div class="message-card">
+                <div class="message-text">💝 Every love song makes me think of you. Every romantic movie reminds me of us. You're my real-life fairytale!</div>
+            </div>
+
+            <button class="next-btn" onclick="nextPage()">Aur aakhiri mai...💖</button>
+        </div>
+    </div>
+
+    <!-- PAGE 6: Final Photos & Message -->
+    <div class="page" id="page6">
+        <div class="celebration-content">
+            <div class="yay-text">💖 Us Together 💖</div>
+            <div class="message">Our Beautiful Journey</div>
+
+            <div class="photo-container">
+                <div class="photo-box"><span>📸</span></div>
+                <div class="photo-box"><span>💑</span></div>
+                <div class="photo-box"><span>💕</span></div>
+                <div class="photo-box"><span>🌹</span></div>
+                <div class="photo-box"><span>❤️</span></div>
+                <div class="photo-box"><span>💝</span></div>
+            </div>
+
+            <div class="love-text">Forever & Always, My Love 💝</div>
+            <div class="message" style="margin-top:30px;font-size:22px;">
+                Happy Valentine's Day, Astav! 💕<br>
+                You Mean The World To Me!
+            </div>
+        </div>
+    </div>
+
+    <!-- Progress Dots -->
+    <div class="progress-dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+
+    <script>
+        let currentPage = 1;
+        const totalPages = 6;
+        const noBtn = document.getElementById('noBtn');
+
+        function moveButton() {
+            const container = document.querySelector('.buttons');
+            const rect = container.getBoundingClientRect();
+            noBtn.style.left = (Math.random() * (rect.width - noBtn.offsetWidth)) + 'px';
+            noBtn.style.top  = (Math.random() * (rect.height - noBtn.offsetHeight)) + 'px';
+        }
+
+        function selectYes() {
+            showPage(2);
+            createFloatingHearts();
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                showPage(currentPage);
+                if (currentPage === 6) createFloatingHearts();
+            }
+        }
+
+        function showPage(pageNum) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page' + pageNum).classList.add('active');
+            currentPage = pageNum;
+
+            document.querySelectorAll('.dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i + 1 <= pageNum);
+            });
+        }
+
+        function createFloatingHearts() {
+            const hearts = ['❤️','💕','💖','💗','💝','💘'];
+            const page = document.querySelector('.page.active');
+            setInterval(() => {
+                const h = document.createElement('div');
+                h.className = 'floating-heart';
+                h.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                h.style.left = Math.random() * 100 + '%';
+                h.style.animationDelay = Math.random() * 2 + 's';
+                page.appendChild(h);
+                setTimeout(() => h.remove(), 5000);
+            }, 300);
+        }
+
+        window.onload = function() {
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = '60%';
+            noBtn.style.top = '50%';
+            noBtn.style.transform = 'translate(-50%, -50%)';
+        };
+    </script>
+</body>
+</html>
